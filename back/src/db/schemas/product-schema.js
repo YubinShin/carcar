@@ -1,9 +1,10 @@
 const { model, Schema } = require('mongoose');
+const shortId = require("../../utils/short-id");
 
 const ProductSchema = new Schema({
-  product_id: { type: Number, required: true },
+  product_id: shortId,
   name: { type: String, required: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   image: { type: String, required: true },
   maker: { type: String, required: true },
   category: { type: String, required: true },

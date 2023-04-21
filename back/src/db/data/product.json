@@ -1,0 +1,101 @@
+[
+  {
+    "product_id": 0,
+    "name": "벤츠",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 60000,
+    "maker": "미니어쳐엘리스",
+    "category": "BENZ",
+    "description": "예쁘다 나도 자동차 사고 싶다"
+  },
+  {
+    "product_id": 1,
+    "name": "오토바이",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 30000,
+    "maker": "미니어쳐엘리스",
+    "category": "BMW",
+    "description": "멋진 오토바이"
+  },
+  {
+    "product_id": 2,
+    "name": "BMW i7",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 60000,
+    "maker": "미니어쳐엘리스",
+    "category": "BMW",
+    "description": "순수전기"
+  },
+  {
+    "product_id": 3,
+    "name": "BMW Z4 로드스터",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 30000,
+    "maker": "미니어쳐엘리스",
+    "category": "BMW",
+    "description": "가솔린"
+  },
+  {
+    "product_id": 4,
+    "name": "BMW 4시리즈 쿠페",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 30000,
+    "maker": "미니어쳐엘리스",
+    "category": "BMW",
+    "description": "가솔린,디젤"
+  },
+  {
+    "product_id": 5,
+    "name": "BMW XM",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 30000,
+    "maker": "미니어쳐엘리스",
+    "category": "BMW",
+    "description": "플러그인 하이브리드"
+  },
+  {
+    "product_id": 6,
+    "name": "포르쉐 911 GT3",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 150000,
+    "maker": "미니어쳐엘리스",
+    "category": "PORSCHE",
+    "description": "레이싱 카를 집에서 즐기세요!"
+  },
+  {
+    "product_id": 7,
+    "name": "람보르기니 우라칸",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 200000,
+    "maker": "미니어쳐엘리스",
+    "category": "LAMBORGHINI",
+    "description": "슈퍼카의 꿈을 이루세요!"
+  },
+  {
+    "product_id": 8,
+    "name": "페라리 488 Pista",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 180000,
+    "maker": "미니어쳐엘리스",
+    "category": "FERRARI",
+    "description": "포화속에서 자유로워지세요!"
+  },
+  {
+    "product_id": 9,
+    "name": "아우디 RS6",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 80000,
+    "maker": "미니어쳐엘리스",
+    "category": "AUDI",
+    "description": "가족과 함께 달려보세요!"
+  },
+  {
+    "product_id": 10,
+    "name": "랜드로버 디스커버리",
+    "image": "http://via.placeholder.com/640x360",
+    "price": 50000,
+    "maker": "미니어쳐엘리스",
+    "category": "LAND ROVER",
+    "description": "편안한 여행을 떠나보세요!"
+  }
+]

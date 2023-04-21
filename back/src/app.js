@@ -9,7 +9,7 @@ require("dotenv").config();
 //라우터
 const productRouter = require('./routers/product-router');
 const adminRouter = require('./routers/admin-router');
-const { resetProduct, resetCategory } = require('./middleware/product-reset');
+const { resetProduct, resetCategory } = require('./middlewares/reset-product');
 
 //귀찮은 몽구스 메시지를 진정시킵니다.
 //[MONGOOSE] DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.

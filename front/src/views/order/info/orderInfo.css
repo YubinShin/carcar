@@ -86,7 +86,7 @@
   margin-top: 20px;
   width: 1272px;
   height: 425px;
-
+  overflow: auto;
   box-shadow: 0px 5px 30px 1px rgba(150, 150, 150, 0.24);
   border-radius: 7px;
 }
@@ -123,6 +123,8 @@
 }
 
 .orderProduct_content_column_info_image {
+  display: flex;
+  align-items: center;
   width: 115px;
   margin-right: 25px;
 }

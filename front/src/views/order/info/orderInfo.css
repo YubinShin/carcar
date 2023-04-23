@@ -89,6 +89,7 @@
   overflow: auto;
   box-shadow: 0px 5px 30px 1px rgba(150, 150, 150, 0.24);
   border-radius: 7px;
+  margin-bottom: 30px;
 }
 
 .orderProduct_category {
@@ -111,6 +112,7 @@
 }
 
 .orderProduct_content {
+  border-bottom: 1px solid;
   padding: 0 23px 0 23px;
   display: flex;
   justify-content: space-between;
@@ -148,4 +150,17 @@
 .product_margin {
   text-align: center;
   width: 137px;
+}
+
+.orderDelete {
+  width: 1272px;
+  display: flex;
+  height: 48px;
+}
+#orderDelete-btn {
+  width: 299px;
+  margin-left: auto;
+  background-color: black;
+  color: #ffffff;
+  border-radius: 2px;
 }

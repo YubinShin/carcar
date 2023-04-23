@@ -31,6 +31,15 @@ const DATA = [
         name: '상품의 이름',
         desc: '상품의 설명',
       },
+      {
+        product_id: '3',
+        amount: 4,
+        image: 'http://via.placeholder.com/640x360',
+        total_price: 100000,
+        brand: '상품의 브랜드',
+        name: '상품의 이름',
+        desc: '상품의 설명',
+      },
     ],
     shipping_status: '배송준비중',
     address: '유저의 주소',
@@ -84,18 +93,8 @@ fetch('')
 
     const orderList = function orderList(i) {
       return `
-    <div class="orderProduct_category">
-      <div class="orderProduct_category_column" style="width: 601px">
-        <div>주문 상품정보</div>
-      </div>
-      <div class="orderProduct_category_column" style="width: 397px">
-        <div class="orderProduct_category_column_list">수량</div>
-        <div class="orderProduct_category_column_list">상품 구매금액</div>
-        <div class="orderProduct_category_column_list">주문 처리상태</div>
-      </div>
-    </div>
-
-    <div class="orderProduct_content">
+   
+  <div class="orderProduct_content">
       <div class="orderProduct_content_column">
         <div class="orderProduct_content_column_info">
           <div class="orderProduct_content_column_info_image">

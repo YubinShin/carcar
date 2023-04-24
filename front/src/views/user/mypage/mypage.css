@@ -44,6 +44,10 @@
     border-radius: 7px;
 }
 
+.welcome_user {
+    display: flex;
+    flex-direction: row;
+}
 .welcome_box_wrap {
     width: 1272px;
     display: flex;

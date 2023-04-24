@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니</title>
+    <!-- <link rel="stylesheet" href="nav.css" /> -->
+    <!-- <link rel="stylesheet" href="../../common.css" /> -->
+    <link rel="stylesheet" href="cart.css" />
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+
+    <script src="https://kit.fontawesome.com/cc4ff2282f.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- <div id="headers"></div> -->
+    <div class="container">
+      <div class="pageName">
+        <i class="fa-solid fa-chevron-left"></i>
+        <span class="pageName_text">장바구니</span>
+      </div>
+
+      <div class="cart">
+        <div class="cart_category">
+          <div class="cart_category_checkbox domain">
+            <input type="checkbox" id="allCheck"/>
+          </div>
+          <p class="cart_category_product">상품</p>
+          <p class="cart_category_price domain">상품 금액</p>
+          <p class="cart_category_amount domain">수량</p>
+          <p class="cart_category_totalPrice domain">촣액</p>
+        </div>
+
+        <div class="cart_product"></div>
+
+        <button id="deleteBtn">선택 삭제</button>
+      </div>
+     
+      <div class="priceBox">
+        <div class="priceBox-shadow">
+          <div class="priceBox-category">
+            <p class="priceBox-category_text size">선택 상품금액</p>
+            <div class="priceBox-category_text" style="width:440px">
+                <p  class="size">+</p>
+                <p class="size">배송비</p>
+                <p class="size">=</p>
+            </div>
+            
+            <p class="priceBox-category_text size" >주문금액</p>
+          </div>
+        
+        <div class="priceBox-price">
+          <div class="priceBox-price_selectPrice size"></div>
+          <div class="priceBox-price_deliveryPrice size" style="width: 440px;">3,000원</div>
+          <div class="priceBox-price_totalPrice size"></div>
+        </div>
+      </div>
+
+      <button class="priceBox-payment">결제하기</button>
+    </div>
+
+    <script src="cart.js" type="module"></script>
+    <script src="../../api.js" type="module"></script>
+    <script src="../../useful-function.js" type="module"></script>
+  </body>
+</html>

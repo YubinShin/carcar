@@ -62,6 +62,11 @@
     align-items: center;
 }
 
+.modify_button > img {
+    width: 23px;
+    height: 23px;
+}
+
 .user_info_box_wrap {
     display: flex;
     flex-direction: column;
@@ -178,7 +183,7 @@
     justify-content: space-between;
 }
 
-.product_img {
+.product_image_info > img {
     background-color: antiquewhite;
     width: 137px;
     height: 137px;

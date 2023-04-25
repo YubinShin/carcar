@@ -114,7 +114,7 @@ fetch('')
     let newPrice = 0;
     let beforePrice = 0;
     let subPrice = 0;
-
+    let selectPrice = 0;
     allcheck.addEventListener('click', allCheckBox);
 
     for (let i = 0; i < minus.length; i++) {
@@ -126,7 +126,7 @@ fetch('')
         }
       }
     }
-    let selectPrice = 0;
+
     for (let i = 0; i < check.length; i++) {
       check[i].addEventListener('click', function (e) {
         const selectedPrice = check[i].parentElement.parentElement.querySelector('.cart_product_totalPrice').innerHTML;
@@ -174,6 +174,7 @@ fetch('')
 
           draftPrice.innerHTML = addCommas(draft + subPrice);
           finalAmount.innerHTML = addCommas(Number(convertToNumber(draftPrice.innerHTML)) + 3000);
+          selectPrice = 0;
         }
       }
     }
@@ -197,6 +198,7 @@ fetch('')
     function deleteList() {
       for (let i = 0; i < check.length; i++) {
         if (check[i].checked === true) {
+          selectPrice = 0;
           let testselect = convertToNumber(
             check[i].parentNode.parentNode.querySelector('.cart_product_totalPrice').innerHTML,
           ); // 체크박스가 된 금액

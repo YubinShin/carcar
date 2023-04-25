@@ -8,6 +8,9 @@ const detailAddressInput = document.querySelector('#detailAddressInput');
 const passwordInput = document.querySelector('#passwordInput');
 const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
 const saveButton = document.querySelector('#save_button');
+const deleteUser = document.querySelector('#delete_user');
+
+//회원정보 수정 기능
 
 //에러메시지 정리
 const errors = {
@@ -18,13 +21,11 @@ const errors = {
     confirmPasswordError: '비밀번호가 일치하지 않습니다.',
 };
 
-// addAllElements();
-// addAllEvents();
+addAllElements();
+addAllEventListeners();
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-    saveButton.addEventListener('click', handleSubmit);
-}
+// 요소 삽입 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllElements() {}
 
 //이름 검사 함수
 function validateName() {
@@ -81,11 +82,9 @@ function validatePhoneNumber() {
 
 //빈값 검사
 function validateOthers() {
-    // const phoneNumber = phoneNumberInput.value.trim();
     const postalCode = postalCodeInput.value.trim();
     const mainAdress = mainAddressInput.value.trim();
     const detailAddress = detailAddressInput.value.trim();
-    // if (!phoneNumber || !postalCode || !mainAdress || !detailAddress) {
     if (!postalCode || !mainAdress || !detailAddress) {
         return false;
     }
@@ -144,9 +143,7 @@ function addAllEventListeners() {
     });
 }
 
-addAllEventListeners();
-
-//회원가입 버튼 클릭 후 input값 초기화
+//저장하기 버튼 클릭 후 input값 초기화
 function resetFields() {
     fullNameInput.value = '';
     emailInput.value = '';
@@ -158,54 +155,86 @@ function resetFields() {
     detailAddressInput.value = '';
 }
 
-// 회원가입 진행
-async function handleSubmit(e) {
+//회원가입 수정 진행
+const getUserData = async () => {
+    try {
+        const response = await fetch('./userData.json');
+        const data = response.json;
+        return data[0];
+    } catch (error) {
+        return console.log(error);
+    }
+};
+
+const updateUserData = (newUserData) => {
+    getUserData()
+        .then((userData) => {
+            //기존 user 데이터와 새로 입력받은 데이터를 비교
+            const updatedUserData = {
+                ...userData,
+                ...newUserData,
+            };
+
+            //업데이트할 필요가 있는 경우 fetch API를 이용해 서버에 새로운 user 데이터를 보냄
+            if (JSON.stringify(updatedUserData) !== JSON.stringify(userData)) {
+                fetch('/updateUserData', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedUserData),
+                })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.log(error));
+            }
+        })
+        .catch((error) => console.log(error));
+};
+
+saveButton.addEventListener('click', updateUserData);
+
+//------------------------------------------
+
+//회원탈퇴 기능 구현
+
+//회원탈퇴란 엔터키 입력시 실행되는 함수
+// const handleEnterkey = (event) => {
+//     if (event.key === 'Enter' && event.target.value === '회원탈퇴') {
+//         console.log('회원탈퇴 실행');
+//     }
+// };
+
+//회원탈퇴란에서 keyup 이벤트 발생시 handleEnterkey 함수 실행
+deleteUser.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        deleteUserData(e);
+    }
+});
+
+//db에서 회원정보 삭제
+async function deleteUserData(e) {
     e.preventDefault();
 
-    const email = emailInput.value;
     const password = passwordInput.value;
-    const phoneNumber = phoneNumberInput.value;
-    const fullName = fullNameInput.value;
-    const postalCode = postalCodeInput.value;
-    const addressMain = mainAddressInput.value;
-    const addressDetail = detailAddressInput.value;
+    const data = { password };
 
-    //객체 만들기
-    const data = {
-        fullName,
-        email,
-        phoneNumber,
-        postalCode,
-        addressMain,
-        addressDetail,
-        password,
-        address: {
-            postalCode,
-            addressMain,
-            addressDetail,
-        },
-    };
+    try {
+        // 우선 입력된 비밀번호가 맞는지 확인 (틀리면 에러 발생함)
+        const userToDelete = await Api.post('/api/user/password/check', data);
+        const { _id } = userToDelete;
 
-    //JSON 만들기
-    const dataJson = JSON.stringify(data);
+        // 삭제 진행
+        await Api.delete('/api/users', _id);
 
-    const apiUrl = '';
+        // 삭제 성공
+        alert('회원 정보가 안전하게 삭제되었습니다.');
 
-    const res = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: dataJson,
-    });
-    if (res.status === 201) {
-        alert('회원가입에 성공하였습니다!');
-    } else {
-        alert('회원가입에 실패하였습니다...');
+        // 토큰 삭제
+        sessionStorage.removeItem('token');
+
+        window.location.href = '/';
+    } catch (err) {
+        alert(`회원정보 삭제 과정에서 오류가 발생하였습니다: ${err}`);
     }
-
-    resetFields();
-
-    const result = await res.json();
-    console.log(result);
 }

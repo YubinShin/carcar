@@ -185,6 +185,14 @@ fetch('')
       check.forEach(items => {
         items.checked = allcheck.checked;
       });
+      const checkedPrice = document.querySelectorAll('.cart_product_totalPrice');
+      let sum = 0;
+      for (let i = 0; i < checkedPrice.length; i++) {
+        sum += convertToNumber(checkedPrice[i].innerHTML);
+      }
+
+      selectProductPrice.innerHTML = sum;
+      finalAmount.innerHTML = sum + 3000;
     }
 
     function deleteList() {

@@ -115,7 +115,6 @@ fetch('')
     let beforePrice = 0;
     let subPrice = 0;
     let selectPrice = 0;
-    allcheck.addEventListener('click', allCheckBox);
 
     for (let i = 0; i < minus.length; i++) {
       minus[i].addEventListener('click', minusAmount);
@@ -149,9 +148,9 @@ fetch('')
 
         selectProductPrice.innerHTML = addCommas(newPrice);
         finalAmount.innerHTML = newPrice + 3000;
-        selectPrice = 0;
+
         subPrice = convertToNumber(addCommas(newPrice));
-        console.log(subPrice);
+        selectPrice = 0;
       }
     }
 
@@ -162,13 +161,14 @@ fetch('')
         if (ischecked.checked === true) {
           const amount = e.target.parentNode.querySelector('.product_amount');
           const draftPrice = document.querySelector('.priceBox-price_selectPrice');
-          const targetPrice = e.target.parentElement.parentElement.parentElement;
-          let totalPrice = targetPrice.querySelectorAll('.cart_product_totalPrice');
-          console.log(newPrice);
+          const targetPrice = e.target.parentElement.parentElement;
+          let totalPrice = targetPrice.querySelector('.cart_product_totalPrice');
 
-          beforePrice = convertToNumber(totalPrice[i].innerHTML);
+          beforePrice = convertToNumber(totalPrice.innerHTML);
+          console.log(beforePrice);
+
           newPrice = data[0].ordered_product[i].price * parseInt(amount.innerHTML);
-          totalPrice[i].innerHTML = newPrice;
+          totalPrice.innerHTML = newPrice;
           subPrice = newPrice - beforePrice;
           let draft = convertToNumber(draftPrice.innerHTML);
 
@@ -178,11 +178,14 @@ fetch('')
         }
       }
     }
-    console.log(newPrice);
+
+    allcheck.addEventListener('click', allCheckBox);
+
     function allCheckBox() {
       check.forEach(items => {
         items.checked = allcheck.checked;
       });
+
       const checkedPrice = document.querySelectorAll('.cart_product_totalPrice');
       let sum = 0;
       for (let i = 0; i < checkedPrice.length; i++) {
@@ -191,6 +194,12 @@ fetch('')
 
       selectProductPrice.innerHTML = sum;
       finalAmount.innerHTML = sum + 3000;
+      if (allcheck.checked === false) {
+        selectProductPrice.innerHTML = 0;
+        finalAmount.innerHTML = 0;
+        selectPrice = 0;
+        subPrice = 0;
+      }
     }
 
     deleteBtn.addEventListener('click', deleteList);
@@ -198,7 +207,6 @@ fetch('')
     function deleteList() {
       for (let i = 0; i < check.length; i++) {
         if (check[i].checked === true) {
-          selectPrice = 0;
           let testselect = convertToNumber(
             check[i].parentNode.parentNode.querySelector('.cart_product_totalPrice').innerHTML,
           ); // 체크박스가 된 금액
@@ -206,10 +214,8 @@ fetch('')
           selectProductPrice.innerHTML = 0;
           finalAmount.innerHTML = 0;
           check[i].parentNode.parentNode.remove();
-        } else if (check[i].checked === false) {
-          // let delPrice = convertToNumber(selectProductPrice.innerHTML); // 하단 상품 총액 금액
-          // let selectPrice = convertToNumber(
-          // delPrice -= selectPrice;
+          subPrice = 0;
+          selectPrice = 0;
         }
       }
     }

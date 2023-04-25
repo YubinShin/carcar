@@ -41,7 +41,7 @@ const DATA = [
         desc: '상품의 설명',
       },
     ],
-    shipping_status: '배송준비중',
+    shipping_status: '배송 전',
     address: '유저의 주소',
     total_price: 780000,
     order_id: '주문 조회 페이지에서의 클릭한 주문번호',
@@ -86,7 +86,7 @@ fetch('')
     totalPrice.innerHTML = addCommas(data[0].total_price);
 
     const address = document.querySelector('#address');
-    address.innerHTML = data[0].address;
+    address.value = data[0].address;
 
     const contact = document.querySelector('#contact');
     contact.innerHTML = data[0].contact;
@@ -122,4 +122,21 @@ fetch('')
     for (let i = 0; i < data[0].ordered_product.length; i++) {
       orderProduct.insertAdjacentHTML('beforeEnd', orderList(i));
     }
+
+    // for (let item = 0; item < data.length; item++) {
+    //   let list = data[item];
+    //   for (let i = 0; i < list.ordered_product.length; i++) {
+    //     (list.ordered_product[i].name)
+
+    //   }
+    // }
+    const btn = document.querySelector('#changeAddress');
+
+    btn.addEventListener('click', function () {
+      if (data[0].shipping_status == '배송 전') {
+        console.log(1);
+      }
+    });
+
+    console.log(data[0].shipping_status);
   });

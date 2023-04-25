@@ -112,12 +112,9 @@ fetch('')
     let selectProductPrice = document.querySelector('.priceBox-price_selectPrice');
 
     let newPrice = 0;
-    let newSelectPrice = 0;
-    let finalPrice = 0;
     let beforePrice = 0;
     let subPrice = 0;
 
-    deleteBtn.addEventListener('click', deleteList);
     allcheck.addEventListener('click', allCheckBox);
 
     for (let i = 0; i < minus.length; i++) {
@@ -137,47 +134,47 @@ fetch('')
         priceCheck(selectedPrice, e);
       });
     }
-
+    let totalPrice;
     function priceCheck(selectedPrice, e) {
       if (e.target.checked === true) {
-        selectPrice += convertToNumber(selectedPrice);
-        newPrice = selectPrice;
-        newSelectPrice = selectPrice;
-        selectProductPrice.innerHTML = addCommas(newSelectPrice);
-        console.log(newPrice);
+        selectPrice += convertToNumber(selectedPrice) + subPrice;
+        selectProductPrice.innerHTML = addCommas(selectPrice);
+        totalPrice = addCommas(selectPrice);
+        finalAmount.innerHTML = addCommas(selectPrice + 3000);
       } else if (e.target.checked === false) {
         let test = e.target.parentElement.parentElement.querySelector('.cart_product_totalPrice').innerHTML;
-
         newPrice = convertToNumber(document.querySelector('.priceBox-price_selectPrice').innerHTML);
 
         newPrice -= convertToNumber(test);
 
         selectProductPrice.innerHTML = addCommas(newPrice);
+        finalAmount.innerHTML = newPrice + 3000;
         selectPrice = 0;
+        subPrice = convertToNumber(addCommas(newPrice));
+        console.log(subPrice);
       }
-
-      finalAmount.innerHTML = addCommas(Number(convertToNumber(selectProductPrice.innerHTML)) + 3000);
     }
 
     for (let i = 0; i < changeBtn.length; i++) {
       changeBtn[i].addEventListener('click', changeAmount);
       function changeAmount(e) {
         const ischecked = e.target.parentElement.parentElement.querySelector('.cart_category_listCheckbox');
+        if (ischecked.checked === true) {
+          const amount = e.target.parentNode.querySelector('.product_amount');
+          const draftPrice = document.querySelector('.priceBox-price_selectPrice');
+          const targetPrice = e.target.parentElement.parentElement.parentElement;
+          let totalPrice = targetPrice.querySelectorAll('.cart_product_totalPrice');
+          console.log(newPrice);
 
-        const amount = e.target.parentNode.querySelector('.product_amount');
-        const draftPrice = document.querySelector('.priceBox-price_selectPrice');
-        const targetPrice = e.target.parentElement.parentElement.parentElement;
-        let totalPrice = targetPrice.querySelectorAll('.cart_product_totalPrice');
-        console.log(newPrice);
+          beforePrice = convertToNumber(totalPrice[i].innerHTML);
+          newPrice = data[0].ordered_product[i].price * parseInt(amount.innerHTML);
+          totalPrice[i].innerHTML = newPrice;
+          subPrice = newPrice - beforePrice;
+          let draft = convertToNumber(draftPrice.innerHTML);
 
-        beforePrice = convertToNumber(totalPrice[i].innerHTML);
-        newPrice = data[0].ordered_product[i].price * parseInt(amount.innerHTML);
-        totalPrice[i].innerHTML = newPrice;
-        subPrice = newPrice - beforePrice;
-        let draft = convertToNumber(draftPrice.innerHTML);
-
-        draftPrice.innerHTML = addCommas(draft + subPrice);
-        finalAmount.innerHTML = addCommas(Number(convertToNumber(draftPrice.innerHTML)) + 3000);
+          draftPrice.innerHTML = addCommas(draft + subPrice);
+          finalAmount.innerHTML = addCommas(Number(convertToNumber(draftPrice.innerHTML)) + 3000);
+        }
       }
     }
     console.log(newPrice);
@@ -195,10 +192,22 @@ fetch('')
       finalAmount.innerHTML = sum + 3000;
     }
 
+    deleteBtn.addEventListener('click', deleteList);
+
     function deleteList() {
       for (let i = 0; i < check.length; i++) {
         if (check[i].checked === true) {
+          let testselect = convertToNumber(
+            check[i].parentNode.parentNode.querySelector('.cart_product_totalPrice').innerHTML,
+          ); // 체크박스가 된 금액
+          console.log(testselect);
+          selectProductPrice.innerHTML = 0;
+          finalAmount.innerHTML = 0;
           check[i].parentNode.parentNode.remove();
+        } else if (check[i].checked === false) {
+          // let delPrice = convertToNumber(selectProductPrice.innerHTML); // 하단 상품 총액 금액
+          // let selectPrice = convertToNumber(
+          // delPrice -= selectPrice;
         }
       }
     }

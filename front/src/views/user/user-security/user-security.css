@@ -77,6 +77,8 @@
 
 .name,
 .id,
+.user_email,
+.current_password,
 .password,
 .phone_number,
 .address,

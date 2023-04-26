@@ -65,9 +65,6 @@ fetch('')
     return DATA;
   })
   .then(data => {
-    console.log(data);
-    console.log(data[0].ordered_product[0].amount);
-
     const orderNum = document.querySelector('#ordernumber');
     orderNum.innerHTML = data[0].order_id;
 
@@ -113,7 +110,9 @@ fetch('')
           <div class="orderProduct_content_column_statement_list product_margin">${data[0].ordered_product[i].total_price}</div>
           <div class="orderProduct_content_column_statement_list product_margin">${data[0].shipping_status}</div>
         </div>
+      
       </div>
+      
     </div>
   `;
     };
@@ -138,5 +137,5 @@ fetch('')
       }
     });
 
-    console.log(data[0].shipping_status);
+    s; // test.innerHTML = `${data[0].total_price}+3000`;
   });

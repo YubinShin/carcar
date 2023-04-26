@@ -67,10 +67,12 @@
           <input type="text" class="deliveryInfo_list_text" id="address" />
           <button id="changeAddress">주소 변경</button>
         </div>
+
         <div class="deliveryInfo_list">
           <div class="deliveryInfo_list_type">연락처</div>
           <div class="deliveryInfo_list_text" id="contact"></div>
         </div>
+
         <div class="deliveryInfo_list">
           <div class="deliveryInfo_list_type">구매자</div>
           <div class="deliveryInfo_list_text customer"></div>
@@ -87,14 +89,20 @@
             <div class="orderProduct_category_column_list">상품 구매금액</div>
             <div class="orderProduct_category_column_list">주문 처리상태</div>
           </div>
-        </div>
       </div>
 
-      <div class="orderDelete">
-        <button id="orderDelete-btn">주문 취소</button>
-      </div>
+      
     </div>
 
+     <div class="priceBox">
+        <div class="priceBox-shadow">
+          <p class="priceBox-category_text size" >상품 구매금액</p>
+        </div>
+
+
+    <div class="orderDelete">
+      <button id="orderDelete-btn">주문 취소</button>
+    </div>
     <!-- <script type="text/javascript">
       $(document).ready(function () {
         $('#headers').load('component/nav.html'); // 원하는 파일 경로를 삽입하면 된다

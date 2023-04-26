@@ -12,6 +12,7 @@ const DATA = [
         brand: '현대',
         name: 'G90',
         desc: '좋은차',
+        product_id: '1',
       },
       {
         amount: 10,
@@ -20,6 +21,7 @@ const DATA = [
         brand: '현대',
         name: '소나타',
         desc: '좋은차',
+        product_id: '1',
       },
       {
         amount: 9,
@@ -28,6 +30,7 @@ const DATA = [
         brand: '현대',
         name: 'G80',
         desc: '좋은차',
+        product_id: '1',
       },
       {
         amount: 1,
@@ -36,6 +39,7 @@ const DATA = [
         brand: '현대',
         name: '싼타페',
         desc: '좋은차',
+        product_id: '1',
       },
     ],
   },
@@ -61,7 +65,7 @@ fetch('')
       <div class="cart_product_info_text">
           <div class="cart_product_info_brand">${data[0].ordered_product[i].brand}</div>
           <div class="cart_product_info_name">${data[0].ordered_product[i].name}</div>
-          <div class="cart_product_info_desc">${data[0].ordered_product[i].desc}</div>
+          <div class="cart_product_info_product_id">${data[0].ordered_product[i].product_id}</div>
       </div>
      
   </div>
@@ -164,7 +168,7 @@ fetch('')
           let totalPrice = targetPrice.querySelector('.cart_product_totalPrice');
 
           beforePrice = convertToNumber(totalPrice.innerHTML);
-          console.log(beforePrice);
+          beforePrice;
 
           newPrice = data[0].ordered_product[i].price * parseInt(amount.innerHTML);
           totalPrice.innerHTML = newPrice;
@@ -215,6 +219,34 @@ fetch('')
           check[i].parentNode.parentNode.remove();
           subPrice = 0;
           selectPrice = 0;
+        }
+      }
+    }
+
+    const pay = document.querySelector('.priceBox-payment');
+
+    pay.addEventListener('click', payData);
+    function payData() {
+      for (let i = 0; i < check.length; i++) {
+        let newObj = [];
+        let payAmount = convertToNumber(
+          check[i].parentElement.parentElement.querySelector('.product_amount').innerHTML,
+        );
+        let payId = convertToNumber(
+          check[i].parentElement.parentElement.querySelector('.cart_product_info_product_id').innerHTML,
+        );
+        let obj = {
+          수량: payAmount,
+          상품번호: payId,
+        };
+
+        let payProduct = check[i].parentElement.parentElement.querySelector('.cart_product_info_name').innerHTML;
+        if (check[i].checked === true) {
+          if (localStorage.getItem(payProduct)) {
+            console.log('이미 장바구니에 담겨있습니다.');
+          } else {
+            localStorage.setItem(payProduct, JSON.stringify(Obj));
+          }
         }
       }
     }

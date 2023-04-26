@@ -24,7 +24,9 @@ addAllElements();
 addAllEventListeners();
 
 // 요소 삽입 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllElements() {}
+function addAllElements() {
+    insertUserData();
+}
 
 //이름 검사 함수
 function validateName() {
@@ -35,8 +37,8 @@ function validateName() {
 }
 
 //비밀번호 검사 함수
-function validatePasswordConfirm() {
-    const password = passwordConfirmInput.value.trim();
+function validatepasswordToChange() {
+    const password = passwordToChangeInput.value.trim();
     const error = document.querySelector('#passwordConfirmInput + .error');
     if (password.length < 11) {
         error.textContent = errors.passwordError;
@@ -157,12 +159,12 @@ async function insertUserData() {
 }
 
 async function saveUserData(e) {
-    e.prevent.value;
+    e.preventDefault;
 
     const fullName = fullNameInput.value;
     //이전에 입력된 비밀번호 검사는 백엔드 단에서?
     const currentPassword = passwordInput.value;
-    const passwordConfirm = passwordConfirmInput.value;
+    const passwordToChange = passwordConfirmInput.value;
     const phoneNumber = phoneNumberInput.value;
     const postalCode = postalCodeInput.value;
     const addressMain = addressMain.value;
@@ -174,8 +176,8 @@ async function saveUserData(e) {
         data.fullName = fullName;
     }
 
-    if (passwordConfirm !== userData.password) {
-        data.password = passwordConfirm;
+    if (passwordToChange !== userData.password) {
+        data.password = passwordToChange;
     }
 
     if (phoneNumber !== userData.phoneNumber) {
@@ -183,22 +185,34 @@ async function saveUserData(e) {
     }
 
     if (postalCode !== userData.address.postalCode) {
-        data.address.postalCode = postalCode;
+        data.address = { ...data.address, postalCode };
     }
 
     if (addressMain !== userData.address.addressMain) {
-        data.address.addressMain = addressMain;
+        data.address = { ...data.address, addressMain };
     }
 
     if (addressDetail !== userData.address.addressDetail) {
-        data.address.addressDetail = addressDetail;
+        data.address = { ...data.address, addressDetail };
     }
+
+    // if (postalCode !== userData.address.postalCode) {
+    //     data.address.postalCode = postalCode;
+    // }
+
+    // if (addressMain !== userData.address.addressMain) {
+    //     data.address.addressMain = addressMain;
+    // }
+
+    // if (addressDetail !== userData.address.addressDetail) {
+    //     data.address.addressDetail = addressDetail;
+    // }
 
     try {
         const { _id } = userData;
         //db에 수정된 정보 저장
         await Api.put('http://34.22.74.213:5000/api/users/info', _id, data);
-
+        console.log(res);
         alert('회원정보가 수정되었습니다.');
         resetFields();
     } catch (err) {

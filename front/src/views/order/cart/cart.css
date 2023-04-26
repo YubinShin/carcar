@@ -31,7 +31,7 @@
   display: flex;
   border-bottom: 1px solid;
   text-align: center;
-  height: 140px;
+  height: 65px;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -40,11 +40,21 @@
   color: #000000;
 }
 
+.banner {
+  margin-right: 28px;
+  width: 138px;
+  height: 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .cart_category_product {
   width: 482px;
+  height: 60px;
+  margin-right: 28px;
 
-  margin-right: 25px;
-  height: 157px;
   display: flex;
   align-items: center;
   justify-content: center;

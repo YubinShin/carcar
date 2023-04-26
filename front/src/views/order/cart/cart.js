@@ -36,7 +36,6 @@ const DATA = [
         brand: '현대',
         name: '싼타페',
         desc: '좋은차',
-        _id: '64423401a5cdc9fb12ec0042',
       },
     ],
   },

@@ -37,8 +37,8 @@ function validateName() {
 }
 
 //비밀번호 검사 함수
-function validatepasswordToChange() {
-    const password = passwordToChangeInput.value.trim();
+function validatePasswordConfirm() {
+    const password = passwordConfirmInput.value.trim();
     const error = document.querySelector('#passwordConfirmInput + .error');
     if (password.length < 11) {
         error.textContent = errors.passwordError;

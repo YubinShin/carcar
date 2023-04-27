@@ -5,7 +5,7 @@ const productList = document.getElementById("product_list_area");
 
 let productData = [];  // 상품데이터 배열로 받아오기
 
-fetch("http://34.22.74.213:5000/api/product?category=bmw", { credential: false })
+fetch("http://34.22.74.213:5000/api/product?categories=bmw", { credential: false })
     .then(res => {
         return res.json();
     })
@@ -18,6 +18,7 @@ fetch("http://34.22.74.213:5000/api/product?category=bmw", { credential: false }
         productData.forEach((product) => {
             const productElement = document.createElement('div');
             productElement.className = 'product_list_item';
+            // const productLink = document.createElement('a');
             const productImageArea = document.createElement('div');
             productImageArea.className = 'item_img';
             const productImage = document.createElement('img');
@@ -30,6 +31,7 @@ fetch("http://34.22.74.213:5000/api/product?category=bmw", { credential: false }
             const productPrice = document.createElement('p');
             productPrice.className = 'list_price';
             
+            // productLink.href += '/' + product.product_id;
             productImage.src += product.image;
             productName.innerHTML += product.name;
             productDescription.innerHTML += product.description;

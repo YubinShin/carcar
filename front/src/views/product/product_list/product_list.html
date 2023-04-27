@@ -26,17 +26,19 @@
         <!-- js 동적 생성 내용
         
         <div class="product_list_item">
-            <div class="item_img">
-                <img src="" alt="제품 사진">
-            </div>
-            <div class="item_text">
-                <p class="list_name">BMW 123</p>
-                <p class="list_sub">
-                    자동차 사고 싶다<br>
-                    자동차 멋지다 멋지다 멋지다
-                </p>
-                <p class="list_price">KRW 30,000</p>
-            </div>
+            <a href="#/product_id">
+                <div class="item_img">
+                    <img src="" alt="제품 사진">
+                </div>
+                <div class="item_text">
+                    <p class="list_name">BMW 123</p>
+                    <p class="list_sub">
+                        자동차 사고 싶다<br>
+                        자동차 멋지다 멋지다 멋지다
+                    </p>
+                    <p class="list_price">KRW 30,000</p>
+                </div>
+            </a>
         </div>
         
         -->
@@ -45,8 +47,8 @@
 
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="product_list.js"></script>
-    <script type="module" src="product_list.js"></script>
-    <script type="module" src="../../useful-function.js"></script>
+    <script type="module" src="product_list.js" defer></script>
+    <script type="module" src="../../useful-function.js" defer></script>
 </body>
 
 </html>

@@ -266,6 +266,7 @@ async function deleteUserData(e) {
         alert('회원 정보가 안전하게 삭제되었습니다.');
 
         // 토큰 삭제
+
         // sessionStorage.removeItem('token');
 
         // window.location.href = '/';

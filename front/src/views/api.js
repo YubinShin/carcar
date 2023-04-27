@@ -7,7 +7,8 @@ async function get(endpoint, params = '') {
         // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
         headers: {
             // Authorization: `Bearer ${localStorage.getItem('token')}`,
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQ4NzA3ZDViM2NkMThmNDBiMDNmODMiLCJyb2xlIjoiYmFzaWMtdXNlciIsImlhdCI6MTY4MjUxMjY4MX0.0Nj2xTNKHMjUKEtGoPlLGgr52xQTsn8ZPiXDeu52dIM`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDRhMGJkNmMyZDFmNzgxYzVlZDIyNGEiLCJyb2xlIjoiYmFzaWMtdXNlciIsImlhdCI6MTY4MjU3NDMwM30.bgUqu4-l9mveMUFdPxVR4A0CbWVzuuuzQMk1_OF0aFE
+            `,
         },
     });
 

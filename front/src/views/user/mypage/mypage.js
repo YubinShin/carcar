@@ -14,25 +14,21 @@ const setUserData = (selector, text) => {
 
 //사용자 정보 받아오기
 async function insertUserData() {
-    userData = await Api.get('http://34.22.74.213:5000/api/users/info');
-
-    userData = {
-        fullName,
+    const userData = await Api.get('http://34.22.74.213:5000/api/users/info');
+    const {
+        full_name,
         email,
-        phoneNumber,
-        address: {
-            postalCode,
-            addressMain,
-            addressDetail,
-        },
-    };
+        phone_number,
+        address: { postal_code, address_main, address_detail },
+    } = userData;
 
-    setUserData('.user_name', userData.fullname);
-    setUserData('.user_email', userData.email);
-    setUserData('.user_phone_number', userData.phoneNumber);
+    console.log(userData);
+    setUserData('.user_name', full_name);
+    setUserData('.user_email', email);
+    setUserData('.user_phone_number', phone_number);
     setUserData(
         '.user_address',
-        `${userData.address.postalCode} ${userData.address.addressMain} ${userData.address.addressDetail}`
+        `${postal_code} ${address_main} ${address_detail}`
     );
 }
 
@@ -43,23 +39,24 @@ const setOrderListData = (selector, text) => {
 };
 
 async function insertLatestOrder() {
-    order = await Api.get('http://34.22.74.213:5000/api/orders');
-
-    data = {
+    orders = await Api.get('http://34.22.74.213:5000/api/orders');
+    console.log(orders);
+    const {
         createdAt,
         order_id,
-        ordered_product: { product_id, amount, image, total_price, _id },
+        ordered_product: { product_id, amount, image, _id },
         shipping_status,
         total_price,
-    };
+    } = orders[0];
 
-    const orderList = data[0];
-    setOrderListData('.order_date', orderList.createdAt);
-    setOrderListData('.order_number', orderList.order_id);
-    setOrderListData('.product_img', orderList.ordered_product[0].image);
-    setOrderListData('.product_category', orderList.ordered_product[0]._id);
-    setOrderListData('.product_name', orderList.ordered_product[0].product_id);
-    setOrderListData('.product_amount', orderList.ordered_product[0].amount);
-    setOrderListData('.payment_amount', orderList.total_price);
-    setOrderListData('.payment_status', orderList.shipping_status);
+    console.log(orders);
+    console.log(orders[0]);
+    setOrderListData('.order_date', createdAt);
+    setOrderListData('.order_number', order_id);
+    setOrderListData('.product_img', image);
+    setOrderListData('.product_category', _id);
+    setOrderListData('.product_name', product_id);
+    setOrderListData('.product_amount', amount);
+    setOrderListData('.payment_amount', total_price);
+    setOrderListData('.payment_status', shipping_status);
 }

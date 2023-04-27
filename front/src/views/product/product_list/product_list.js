@@ -1,11 +1,10 @@
 import { addCommas } from '../../useful-function.js';
 
-const categoryName = document.getElementById("page_name_text");
 const productList = document.getElementById("product_list_area");
 
 let productData = [];  // 상품데이터 배열로 받아오기
 
-fetch("http://34.22.74.213:5000/api/product?category=bmw", { credential: false })
+fetch("http://34.22.74.213:5000/api/product?categories=bmw", { credential: false })
     .then(res => {
         return res.json();
     })

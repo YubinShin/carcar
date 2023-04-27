@@ -56,6 +56,7 @@ main {
     font-family: 'hel_exmedium';
     font-size: 42px;
     line-height: 38px;
+    width: 100%;
 }
 .product_text .product_price {
     font-family: 'pre_medium';
@@ -108,13 +109,32 @@ main {
 .product_text .product_text_bottom .product_text_left .cart_product_amount {
     margin-left: 15px;
 }
+.amount_done {
+    width: 75px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5F5F5;
+    border: 1px solid #676767;
+    border-radius: 2px;
+    margin-left: 7px;
+}
 
+.amount_done:hover {
+    background: #e8e8e8;
+}
+
+.amount_done p {
+    margin-top: -2px;
+}
 
 .product_text .product_text_bottom .product_text_right {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 }
+
 .product_text .product_text_bottom .product_text_right .price_area {
     width: 300px;
     height: 25px;

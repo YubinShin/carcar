@@ -37,7 +37,7 @@
 // app.use(viewsRouter);
 
 // export { app };
-import express from 'express';
+import express from "express";
 import path from 'path';
 
 const app = express();
@@ -57,6 +57,7 @@ viewsRouter.use('/join', serveStatic('join', 'user/'));
 viewsRouter.use('/login', serveStatic('login', 'user/'));
 viewsRouter.use('/mypage', serveStatic('mypage', 'user/'));
 viewsRouter.use('/user-security', serveStatic('user-security', 'user/'));
+viewsRouter.use('/product_list', serveStatic('product_list', 'product/'));
 
 // views폴더 내의 ${resource} 폴더 내의 모든 파일을 웹에 띄우며,
 // 이 때 ${resource}.html 을 기본 파일로 설정함.

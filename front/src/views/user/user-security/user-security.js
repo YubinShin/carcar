@@ -1,3 +1,5 @@
+import * as Api from '../../api.js';
+
 // 요소(element), input 혹은 상수
 const fullNameInput = document.querySelector('#fullNameInput');
 const userEmail = document.querySelector('#user_email');
@@ -142,24 +144,15 @@ const setUserData = (selector, text) => {
 
 //기존 회원 정보 받아오기
 async function insertUserData() {
-    userData = await Api.get('http://34.22.74.213:5000/api/users/info');
+    const userData = await Api.get('http://34.22.74.213:5000/api/users/info');
 
-    userData = {
-        fullName,
-        email,
-        phoneNumber,
-        address: {
-            postalCode,
-            addressMain,
-            addressDetail,
-        },
-    };
-
-    setUserData('.user_email', userData.email);
+    const { email } = userData;
+    console.log(userData);
+    setUserData('.user_email', email);
 }
 
 async function saveUserData(e) {
-    e.preventDefault;
+    e.preventDefault();
 
     const fullName = fullNameInput.value;
     //이전에 입력된 비밀번호 검사는 백엔드 단에서?
@@ -167,51 +160,29 @@ async function saveUserData(e) {
     const passwordToChange = passwordConfirmInput.value;
     const phoneNumber = phoneNumberInput.value;
     const postalCode = postalCodeInput.value;
-    const addressMain = addressMain.value;
-    const addressDetail = addressDetail.value;
+    const addressMain = mainAddressInput.value;
+    const addressDetail = detailAddressInput.value;
 
-    const data = { currentPassword };
+    const data = {
+        fullName,
+        currentPassword,
+        passwordToChange,
+        phoneNumber,
+        postalCode,
+        addressMain,
+        addressDetail,
+    };
 
-    if (fullName !== userData.fullName) {
-        data.fullName = fullName;
-    }
-
-    if (passwordToChange !== userData.password) {
-        data.password = passwordToChange;
-    }
-
-    if (phoneNumber !== userData.phoneNumber) {
-        data.phoneNumber = phoneNumber;
-    }
-
-    if (postalCode !== userData.address.postalCode) {
-        data.address = { ...data.address, postalCode };
-    }
-
-    if (addressMain !== userData.address.addressMain) {
-        data.address = { ...data.address, addressMain };
-    }
-
-    if (addressDetail !== userData.address.addressDetail) {
-        data.address = { ...data.address, addressDetail };
-    }
-
-    // if (postalCode !== userData.address.postalCode) {
-    //     data.address.postalCode = postalCode;
-    // }
-
-    // if (addressMain !== userData.address.addressMain) {
-    //     data.address.addressMain = addressMain;
-    // }
-
-    // if (addressDetail !== userData.address.addressDetail) {
-    //     data.address.addressDetail = addressDetail;
-    // }
+    console.log(data);
 
     try {
-        const { _id } = userData;
+        // const { _id } = userData;
         //db에 수정된 정보 저장
-        await Api.put('http://34.22.74.213:5000/api/users/info', _id, data);
+        const res = await Api.put(
+            'http://34.22.74.213:5000/api/users/info',
+            // _id,
+            data
+        );
         console.log(res);
         alert('회원정보가 수정되었습니다.');
         resetFields();
@@ -281,27 +252,23 @@ deleteUser.addEventListener('keyup', (e) => {
 async function deleteUserData(e) {
     e.preventDefault();
 
-    const password = passwordInput.value;
-    const data = { password };
+    const currentPassword = deleteUser.value;
+    const data = { currentPassword };
 
     try {
         // 우선 입력된 비밀번호가 맞는지 확인 (틀리면 에러 발생함)
-        const userToDelete = await Api.post(
-            'http://34.22.74.213:5000/api/users/info',
-            data
-        );
-        const { _id } = userToDelete;
+        // await Api.post('http://34.22.74.213:5000/api/users/info', data);
 
         // 삭제 진행
-        await Api.delete('http://34.22.74.213:5000/api/users/info', _id);
+        await Api.delete('http://34.22.74.213:5000/api/users/info', data);
 
         // 삭제 성공
         alert('회원 정보가 안전하게 삭제되었습니다.');
 
         // 토큰 삭제
-        sessionStorage.removeItem('token');
+        // sessionStorage.removeItem('token');
 
-        window.location.href = '/';
+        // window.location.href = '/';
     } catch (err) {
         alert(`회원정보 삭제 과정에서 오류가 발생하였습니다: ${err}`);
     }

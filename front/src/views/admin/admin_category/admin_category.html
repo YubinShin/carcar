@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin_category</title>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="admin_category.css" />
+    <link rel="stylesheet" href="../../common.css" />
+    <script src="admin_category.js" type="module" defer></script>
+</head>
+
+<body>
+    <section id="admin_category" class="wrap">
+        <!-- previous버튼 -->
+        <div class="page_name wrap">
+            <div>
+                <img class="previous_btn" src="../../img/arrow.svg" alt=""> <!--이전 페이지 돌아가기 기능 구현하기-->
+                <p class="sub_title_kor">카테고리 관리</p>
+            </div>
+        </div>
+
+        <!-- 카테고리 리스트 영역 -->
+        <div class="admin_area">
+            <div class="admin_list_area">
+                <div class="admin_data_area">
+                    <div class="category_area">
+                        <div class="name">BMW</div>
+                        <div class="control">
+                            <input class="input" id="category_edit_input" type="text" name="category_name"
+                                placeholder="수정 할 카테고리 이름 입력" required />
+                        </div>
+                    </div>
+                    <div class="admin_btn_area">
+                        <button class="white_btn">카테고리 수정</button>
+                        <button class="black_btn">카테고리 삭제</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 카테고리 추가 영역 -->
+            <div class="admin_list_area">
+                <div class="admin_data_area">
+                    <div class="category_area">
+                        <div class="name" style="font-weight: bold;">+ 카테고리 추가</div>
+                        <div class="control">
+                            <input class="input" id="category_add_input" type="text" name="category_name"
+                                placeholder="추가 할 카테고리 이름 입력" required />
+                        </div>
+                    </div>
+                    <div id="category_add_btn_area" class="admin_btn_area">
+                        <button id="category_add_btn" class="white_btn">카테고리 추가</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--
+        <div class="user_info_box">
+            <div class="user_password_info_box">
+                <div class="password">변경할 비밀번호</div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            class="input"
+                            id="passwordConfirmInput"
+                            type="password"
+                            name="confirm_password"
+                            placeholder="Confirm password..."
+                            required
+                        />
+                        <span class="error"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </section>
+</body>
+
+</html>
